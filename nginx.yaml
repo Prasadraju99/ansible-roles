@@ -1,6 +1,7 @@
 - name: install nginx server
   hosts: all
   become: yes   # take sudo access
+  serial: 3
   tasks:
   - name: install nginx
     ansible.builtin.package:  # to install a package/service # Heterogeneous module that can work for all distributions
