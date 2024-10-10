@@ -37,7 +37,6 @@
   #     src: /tmp/backend.zip   # by default it thinks this is in ansible server
   #     dest: /app
   #     remote_src: yes
-
 - name: install dependencies
   ansible.builtin.command:  npm install
   args:
@@ -55,7 +54,7 @@
     name: all
     state: import
   notify: 
-  - restart
+  - restart nodejs
 - name: daemon reload
   ansible.builtin.systemd_service:
     daemon_reload: true
