@@ -4,10 +4,10 @@
     - PyMySQL
     - cryptography
     executable: pip3.9
-- name: install PyMySQL
-  ansible.builtin.package:
-    name: mysql
-    state: present
+# - name: install PyMySQL
+#   ansible.builtin.package:
+#     name: mysql
+#     state: present
 - name: disable default nodejs
   ansible.builtin.command: dnf module disable nodejs -y
 - name: enable nodejs 20 
@@ -19,7 +19,8 @@
 - name: expenser user
   ansible.builtin.user:
     name: expense
-- name: import tasks from common roles
+
+- name: import tasks from common roles    # define import role, in common folder
   ansible.builtin.import_role:
     name: common
     tasks_from: app-pre-req
