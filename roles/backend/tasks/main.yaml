@@ -24,6 +24,8 @@
   ansible.builtin.import_role:
     name: common
     tasks_from: app-pre-req
+    tags:
+    - deployment
 
   # - name: create app directory
   #   ansible.builtin.file:
@@ -42,6 +44,8 @@
   ansible.builtin.command:  npm install
   args:
     chdir: /app
+  tags: 
+  - deployment
 - name: copy backend service file
   ansible.builtin.template:           # copy module only works for files without variables
     src: backend.service.j2
@@ -59,5 +63,7 @@
 - name: daemon reload
   ansible.builtin.systemd_service:
     daemon_reload: true
+  tags: 
+  - deployment
     # name: backend
     # state: restarted
