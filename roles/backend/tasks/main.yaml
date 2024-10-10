@@ -45,6 +45,8 @@
   ansible.builtin.template:           # copy module only works for files without variables
     src: backend.service.j2
     dest: /etc/systemd/system/backend.service
+    notify: 
+    - restart nodejs
 - name: import mysql data
   community.mysql.mysql_db:
     login_user: root
@@ -53,8 +55,6 @@
     target: /app/schema/backend.sql
     name: all
     state: import
-  notify: 
-  - restart nodejs
 - name: daemon reload
   ansible.builtin.systemd_service:
     daemon_reload: true
